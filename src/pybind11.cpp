@@ -51,7 +51,7 @@ struct FunctionParserWrapBase : FunctionParserBase<Value_t> {
     bool AddFunction1(const std::string &name, typename BASE::FunctionPtr ptr, unsigned paramsAmount){
         return BASE::AddFunction(name, ptr, paramsAmount);
     }
-    bool AddFunction2(const std::string &name, BASE &fp){
+    bool AddFunction2(const std::string &name, FunctionParserWrapBase<Value_t> &fp){
         return BASE::AddFunction(name, fp);
     }
 };
