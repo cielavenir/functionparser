@@ -3,6 +3,7 @@ constexpr bool false_v = false;
 
 #include <string.h>
 #include <pybind11/stl.h>
+#include <pybind11/complex.h>
 #include <fparser.hh>
 
 typedef std::pair<std::string, std::string> pss;
@@ -83,13 +84,15 @@ PYBIND11_MODULE(functionparser, m){
     using namespace pybind11::literals;
     m.def("SearchAndReplace", &SearchAndReplace, "in"_a, "pairs"_a);
 
-    DefineFunctions<double>(m, "");
+    DefineFunctions<double>(m, "_d");
     DefineFunctions<float>(m, "_f");
     DefineFunctions<long double>(m, "_ld");
     DefineFunctions<long>(m, "_li");
 
-    DefineFunctions<std::complex<double>>(m, "cd");
+    DefineFunctions<std::complex<double>>(m, "_cd");
     DefineFunctions<std::complex<float>>(m, "_cf");
     DefineFunctions<std::complex<long double>>(m, "_cld");
+
+    m.attr("FunctionParser") = m.attr("FunctionParser_d");
 }
 
