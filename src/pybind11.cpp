@@ -7,7 +7,7 @@ constexpr bool false_v = false;
 #include <fparser.hh>
 
 typedef std::pair<std::string, std::string> pss;
-std::string SearchAndReplace(const std::string& in, const std::vector<pss>&_pairs);
+std::string SearchAndReplace(const std::string& instr, const std::vector<pss>&_pairs);
 
 template<typename Value_t>
 struct FunctionParserWrapBase : FunctionParserBase<Value_t> {
@@ -82,7 +82,7 @@ void DefineFunctions(const pybind11::module_ &m, const std::string &suffix){
 
 PYBIND11_MODULE(functionparser, m){
     using namespace pybind11::literals;
-    m.def("SearchAndReplace", &SearchAndReplace, "in"_a, "pairs"_a);
+    m.def("SearchAndReplace", &SearchAndReplace, "instr"_a, "pairs"_a);
 
     DefineFunctions<double>(m, "_d");
     DefineFunctions<float>(m, "_f");
